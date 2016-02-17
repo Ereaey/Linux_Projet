@@ -13,7 +13,6 @@ url_kernel = 'https://cdn.kernel.org/pub/linux/kernel/v3.0/linux-3.2.2.tar.bz2'
 rep_courant = os.popen("echo `pwd`", "r").read().rstrip('\n')
 os.system("mkdir download")
 os.system("mkdir generate")
-#p=os.popen("echo `pwd`", "r").read().rstrip('\n') + "/gcc-linaro-5.2-2015.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-"
 
 print '\033[92m' + "Creation de u-boot, kernel, rootfs pour beaglebone white" + '\033[0m'
 #print p
@@ -33,18 +32,19 @@ os.rename(filename_kernel, "kernel.tar.bz2")
 filename_kernel = "kernel.tar.bz2"
 os.system("mv " + filename_kernel + " download/" + filename_kernel)
 
-print '\033[95m' + "\nTelechargement du u-boot" + '\033[0m'
-os.system("git clone https://github.com/u-boot/u-boot download/u-boot")
+print '\033[95m' + "\nTelechargement du u-boot a partir de git" + '\033[0m'
+print "Git : https://github.com/u-boot/u-boot"
+a = os.popen("git clone https://github.com/u-boot/u-boot download/u-boot")
+print a.read()
 
 print '\033[92m' + "Decompression toolchain" + '\033[0m'
-os.system("mkdir download/toolchain && tar xf " + filename_toolchain + " -C download/toolchain --strip-components 1")
+os.system("mkdir download/toolchain && tar xf download/"+filename_toolchain + " -C download/toolchain --strip-components 1")
 path_toolchain = rep_courant + "/download/toolchain/bin/arm-linux-gnueabihf-"
 print "path : " + path_toolchain
-
-#os.system(p + "gcc --version")#Test toolchain
+#os.system(path_toolchain + "gcc --version")#Test toolchain
 
 print '\033[92m' + "Decompression kernel" + '\033[0m'
-tar = tarfile.open(filename_kernel)
+tar = tarfile.open("download/"+filename_kernel)
 tar.extractall(path="download/kernel/")
 tar.close()
 
@@ -55,7 +55,7 @@ try:
 except OSError:
     pass
 try:
-    os.remove("download" + filename_toolchain)
+    os.remove("download/" + filename_toolchain)
 except OSError:
     pass
 
