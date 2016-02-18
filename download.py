@@ -7,7 +7,7 @@ import subprocess
 class Download:
     def __init__(self):
         self.url_toolchain = 'https://releases.linaro.org/components/toolchain/binaries/5.2-2015.11/arm-linux-gnueabihf/gcc-linaro-5.2-2015.11-x86_64_arm-linux-gnueabihf.tar.xz'
-        self.url_kernel = 'https://cdn.kernel.org/pub/linux/kernel/v3.0/linux-3.2.2.tar.bz2'
+        self.url_kernel = 'https://cdn.kernel.org/pub/linux/kernel/v4.x/linux-4.4.2.tar.xz'
         self.rep_courant = os.popen("echo `pwd`", "r").read().rstrip('\n')
         #os.mkdir('download')
         self.filename_toolchain = "toolchain.tar.xz"
@@ -46,10 +46,12 @@ class Download:
         
     def decompressKernel(self):
         print '\033[95m' + "\nDecompression kernel" + '\033[0m'
-        tar = tarfile.open("download/"+self.filename_kernel)
-        tar.extractall(path="download/kernel/")
-        tar.close()
-        print '\033[95m' + "Fin decompression kernel" + '\033[0m'
+        try:
+            with open("download/"+self.filename_kernel): pass
+            os.system("mkdir download/kernel && tar xf download/"+self.filename_kernel + " -C download/kernel --strip-components 1")
+            print '\033[95m' + "Fin decompression kernel" + '\033[0m'
+        except IOError:
+           print '\033[95m' + "Erreur decompression kernel (fichier manquant)" + '\033[0m'
 
 
     def cleanFiles(self):

@@ -4,12 +4,19 @@ from os import system
 import os
 import curses
 from download import *
+from gen import *
 import fileinput
 
 d = Download()
+g = Generator()
 
 x = 0
 e = 0
+
+os.system("mkdir download")
+os.system("mkdir generate")
+os.system("mkdir generate/boot")
+
 while x != ord('6'):
     screen = curses.initscr()
     screen.clear()
@@ -81,49 +88,15 @@ while x != ord('6'):
             screen.refresh()
             curses.endwin()
             if e == ord('1'):
-                screen.clear()
-                screen.refresh()
-                curses.endwin()
-                d.clearFolders()
-                d.cleanFiles()
-                d.downloadToolchain()
-                d.downloadKernel()
-                d.downloadUboot()
-                d.decompressToolchain()
-                d.decompressKernel()
-                d.cleanFiles()
+                print "tout"
+                g.generateUboot(d.getToolchain())
+                g.generateKernel(d.getToolchain())
             elif e == ord('2'):
-                d.clearToolchain()
-                d.downloadToolchain()
-                d.decompressToolchain()
-                d.cleanFiles()
+                g.generateKernel(d.getToolchain())
             elif e == ord('3'):
-                print '\033[92m' + "U-boot, config target beaglebone white : am335x_evm_defconfig" + '\033[0m'
-                os.chdir("download/u-boot/")
-                os.system("make ARCH=arm CROSS_COMPILE="+d.getToolchain()+" distclean")
-                os.system("make ARCH=arm CROSS_COMPILE="+d.getToolchain()+" am335x_evm_defconfig")
-                print '\033[92m' + 'Personnalisation du u-boot' + '\033[0m'
-                #Modification du message prompt .config
-                #CONFIG_AUTOBOOT_PROMPT="Press SPACE to abort autoboot in %d seconds\n"
-                '''
-                f = file(".config","r")    # ouvrir le fichier
-                chaine = f.read()                   # le charger dans une chaine de caracteres
-                f.close()                           # fermer le fichier
-                result=chaine.replace('CONFIG_AUTOBOOT_PROMPT="', 'CONFIG_AUTOBOOT_PROMPT="ARTHUS Anthony \n PAUCHET Adeline \n')
-                f = file(".config","w")    # ouvrir le fichier de sortie
-                # en ecriture  Tu peux ouvrir le meme si tu veux lecraser
-                f.write(result)                     # ecrire le resultat dans le fichier
-                f.close()            
-                '''
-                print '\033[92m' + "Compilation de u-boot" + '\033[0m'
-                os.system("make ARCH=arm CROSS_COMPILE="+d.getToolchain()+" -j4")
-                print '\033[92m' + "U-boot est maintenant compile" + '\033[0m'
+                g.generateUboot(d.getToolchain())
             elif e == ord('4'):
-                screen.clear()
-                screen.refresh()
-                curses.endwin()
-                d.clearUboot()
-                d.downloadUboot()
+                print "rootfs"
         curses.endwin()
         #execute_cmd("apachectl restart")
         
@@ -134,7 +107,8 @@ while x != ord('6'):
 curses.endwin()
 
 
-
+#uEnv.txt a creer pour la configuration du uboot
+#Mettre en place l'architecture
 '''
 username = get_param("Enter the username")
 homedir = get_param("Enter the home directory, eg /home/nate")
