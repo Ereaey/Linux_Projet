@@ -25,8 +25,8 @@ class Generator:
         os.system("make menuconfig ARCH=arm CROSS_COMPILE="+toolchain+" bb.org_defconfig")
         print '\033[92m' + "Compilation du kernel" + '\033[0m'
         os.system("make ARCH=arm CROSS_COMPILE="+toolchain+" -j4")
-        os.system("make ARCH=arm CROSS_COMPILE="+toolchain+" uImage dtbs LOADADDR=0x80008000 -j4")
-        os.system("make ARCH=arm CROSS_COMPILE="+toolchain+" uImage-dtb.am335x-bone -j4")
+        os.system("make ARCH=arm CROSS_COMPILE="+toolchain+" uImage LOADADDR=0x80008000 -j4")
+        #os.system("make ARCH=arm CROSS_COMPILE="+toolchain+" uImage-dtb.am335x-bone -j4")
         os.system("make ARCH=arm CROSS_COMPILE="+toolchain+" modules -j4")
         print '\033[92m' + "le kernel est maintenant compile" + '\033[0m'
         #os.system("cp u-boot.img ../../generate/boot/u-boot.img")
