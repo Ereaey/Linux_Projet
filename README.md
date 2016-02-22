@@ -74,7 +74,7 @@ Ensuite nous le configurons plus en détail
 `make menuconfig`  
 
 Toute la configuration du noyau et du rootfs....  
-(Selection de l'ajout du kernel, ajout de u-boot, modification diverses)  
+(Selection de l'ajout du kernel, ajout de u-boot, modification diverses) Activer device tree  
 `make uboot-menuconfig`
 
 Lancer la compilation `make`
