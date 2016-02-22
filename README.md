@@ -64,17 +64,24 @@ Utilisation buildroot
 Téléchargement direct sur le site ou via le git  
 `git clone git://git.buildroot.net/buildroot`
 
+Nous pouvons voir la liste des templates possible à l'aide de  
+`make list_defconfigs`
+
 Nous allons ensuite pouvoir utiliser le template de la beaglebone
 `make beaglebone_defconfig`
 
 Ensuite nous le configurons plus en détail  
 `make menuconfig`  
 
-Toute la configuration du noyau et du rootfs....
+Toute la configuration du noyau et du rootfs....  
+(Selection de l'ajout du kernel, ajout de u-boot, modification diverses)  
+`make uboot-menuconfig`
 
-Lancer la compilation  
-`make`  
+Lancer la compilation `make`
+
 Pour finir nous pouvons récuperer les fichiers dans `output/images/`
+
+On doit utiliser `make distclean` pour pouvoir refaire une compilation à partir de zéro
 
 Mise en place de la SD
 ----------------
@@ -94,6 +101,7 @@ Partition BOOT
 U-boot
 MLO
 uImage
+UEnv.txt
 ~~~
 
 ~~~
@@ -117,6 +125,22 @@ path_toolchain = "/download/toolchain/bin/arm-linux-gnueabihf-"
 ~~~
 
 ### Creation U-boot ###
+
+~~~python
+# Telechargement de uboot depuis le git
+os.system("git clone https://github.com/u-boot/u-boot download/u-boot")
+os.system("cd download/u-boot")
+# Nettoyage des fichiers
+os.system("make ARCH=arm CROSS_COMPILE=" + path_toolchain + " distclean")
+# Selection de la config am335
+os.system("make ARCH=arm CROSS_COMPILE=" + path_toolchain + " am335x_evm_defconfig")
+# Ouverture du menuconfig pour personnaliser le uboot
+os.system("make menuconfig ARCH=arm CROSS_COMPILE=" + path_toolchain") 
+# Compilation de uboot
+os.system("make ARCH=arm CROSS_COMPILE=" + path_toolchain)
+~~~
+
+### Creation Kernel ###
 
 ~~~python
 # Telechargement de uboot depuis le git
