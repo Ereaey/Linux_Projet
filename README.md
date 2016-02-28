@@ -6,6 +6,6 @@ Compilation de u-boot, kernel et rootfs pour une beaglebone white
 [Création via yocto](https://github.com/Ereaey/Linux_Projet/blob/master/linux_yocto)  
 
 [Code python, création manuelle](https://github.com/Ereaey/Linux_Projet/blob/master/linux_python)  
-[Mise en place de la carte SD](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone_python/sd.md)  
+[Mise en place de la carte SD](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone/sd.md)  
 
 [Utilisation de la beaglebone](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone)
