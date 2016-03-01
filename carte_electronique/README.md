@@ -21,22 +21,24 @@ Fonctionnalitées
 [Lien amazon](http://www.amazon.fr/gp/product/B010JMHFR4?psc=1&redirect=true&ref_=ox_sc_act_title_2&smid=A2Y8GQ6UXTSYQT)
 
 * Laser  
-[Lien amazon]()
+[Lien amazon](http://www.amazon.fr/gp/product/B0081S18DQ?psc=1&redirect=true&ref_=oh_aui_detailpage_o00_s01)
 
 ### Fonctionnalitées ###
 
 Communications de la beagleboard avec les modes suivants :
-* Bluetooth
-* USB
-* Radio
-* TCP (Wifi ou Ethernet)    
-* I2C pour la manette ou autre
+* Bluetooth -> UART 2
+* USB -> UART 1
+* Radio -> UART 2
+* TCP (Wifi ou Ethernet) -> UART 2 Ou Ethernet    
+// * I2C pour la manette ou autre
+
+Multiplexer l'UART 2 pour choisir le module utilisé (Logiciel)
+2 Multiplexeur
+
 
 Composants sur la carte :  
 * Possibilitées d'interfacer les différentes cartes de communcation  
 * Controler 2 LED et 2 boutons poussoir en actionneur (TEST) GPIO  
-* Controler les servo-moteurs et le laser  
-* ECRAN 7 SEGMENTS ???
-
+* Controler les servo-moteurs et le laser soit 2 PWM et une sortie GPIO
 
 
