@@ -13,12 +13,14 @@ Enumération possible pour son implémentation en C++
 ### 0x41 : Angles moteurs, 2 octets ###
 * Valeur à ajouter au servo 1 en hexa
 * Valeur à ajouter au servo 2 en hexa  
-Ajouter 100 à la valeur pour négatif  
-Angle Max 90°
+Ne pas se déplacer 0x41  
+Se déplacer de + 10 0x42   
+Se déplacer de - 10 0x43  
+
 
 ### 0X42 : Angles moteurs, 2 octets ###
-* Angle servo 1 en hexa
-* Angle servo 2 en hexa
+* Angle servo 1 en hexa + 0x41
+* Angle servo 2 en hexa + 0x41
 
 ### 0X43 : LED, 1 octet ###
 * 0x41 Eteindre
@@ -26,4 +28,4 @@ Angle Max 90°
 * 0x43 Switch
 
 ### 0x44 Lancer forme, 1 octet ###
-* id_forme en hexa
+* id_forme en hexa à partir de 0x41
