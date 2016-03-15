@@ -4,6 +4,7 @@ import time
 class PWM:
     def __init__(self):
         os.system("echo am33xx_pwm > /sys/devices/bone_capemgr.8/slots")
+        time.sleep(2)
         
     def set_duty(self, channel, duty):
         n = self.getNameChannel(channel)
@@ -19,11 +20,11 @@ class PWM:
     
     def start(self, channel, duty, period):
         os.system("echo bone_pwm_"+channel+" > /sys/devices/bone_capemgr.8/slots")
-        time.sleep(2)
+        time.sleep(3)
         n = self.getNameChannel(channel)
         os.system("echo " + str(duty) + " > /sys/devices/ocp.3/"+n+"/duty")
         os.system("echo " + str(period) + " > /sys/devices/ocp.3/"+n+"/period")
-        time.sleep(0.1)
+        time.sleep(1)
         os.system("echo 1 > /sys/devices/ocp.3/"+n+"/run")
         
     def getNameChannel(self, channel):
