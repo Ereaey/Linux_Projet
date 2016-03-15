@@ -12,8 +12,7 @@ Compilation de u-boot, kernel et rootfs pour une beaglebone white
 Soft sur beaglebone
 ============
 
-[Utilisation de la beaglebone (PWM, GPIO, ...)](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone)
-[Architecture logicielle]()
-[Principe DBUS]()
-[Description modes de communication]()
+[Utilisation de la beaglebone (PWM, GPIO, ...)](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone)  
+[Principe DBUS]()  
+[Description modes de communication]()  
 
