@@ -19,9 +19,3 @@ class GPIO:
         
     def setValue(self, pin, value):
         os.system("echo " + str(value) + " > /sys/class/gpio/gpio"+str(pin)+"/value");
-'''     
-g = GPIO()
-g.create(60)
-g.outputPin(60)
-g.setValue(60, 1)
-'''

@@ -44,10 +44,3 @@ class PWM:
     def getNameChannel(self, channel):
         name = os.popen("ls /sys/devices/ocp.3 | grep pwm_test_"+channel)
         return name.read()[:-1]
-       
-'''
-p = PWM()
-p.start("P8_13", 25000, 20000000)
-p.set_duty(12500)
-p.set_polarity(1)
-'''

@@ -18,41 +18,28 @@ class Shape:
                 time.sleep(0.01)
     
     def moveTo(self, X, Y):
-        self.t.setAngle(X + self.zeroH, Y + self.zeroV)
+        self.t.setAngleHorizontal(X + self.zeroH)
+        self.t.setAngleVertical(Y + self.zeroV)
         
-    def getPosition():
+    def getPosition(self):
         return self.t.servoHorizontal.getAngle() - self.zeroH, self.t.servoVertical.getAngle() - self.zeroV
         
     def drawLine(self, posX, posY):
-        print "DrawLine"
-        X = getPosition()[0]
-        Y = getPosition()[1]
-        print math.sqrt((posX - X)**2 + (posY - Y)**2)
-        pass
-        
+        X = int(self.getPosition()[0])
+        Y = int(self.getPosition()[1])
+        t = math.sqrt((posX - X)**2 + (posY - Y)**2)
+        for i in range(0, math.ceil(t)):
+            e = i
+            if i > t:
+                e = t
+            self.moveTo(int(X + (posX - X) / t * e), int(Y + (posY - Y) / t * e))
+            time.sleep(0.01)
+    
     def drawSquare(self):
-        print "Draw square"
+        print "Draw squareLine"
         for nb in range(0, 5):
             self.moveTo(75, 75)
-            #self.t.setAngle(-15, -15)
-            for i in range(75, 106, 1):
-                #self.t.setAngleVertical(i)
-                self.moveTo(75, i)
-                time.sleep(0.01)
-            for i in range(75, 105, 1):
-                #self.t.setAngleHorizontal(i)
-                self.moveTo(i, 105)
-                time.sleep(0.01)
-            for i in range(105, 76, -1):
-                #self.t.setAngleVertical(i)
-                self.moveTo(105, i)
-                time.sleep(0.01)
-            for i in range(105, 76, -1):
-                #self.t.setAngleHorizontal(i)
-                time.sleep(0.01)
-                self.moveTo(i, 75)
-
-'''
-e = Shape("dqsd")
-e.drawCircle()
-'''
+            self.drawLine(75, 105)
+            self.drawLine(105, 105)
+            self.drawLine(105, 75)
+            self.drawLine(75, 75)

@@ -21,21 +21,25 @@ class Turret:
     
     def setAngleVertical(self, angleVertical):
         self.servoVertical.setAngle(angleVertical)
-        
+    
+    def addAngleVertical(self, angleVertical):
+        self.servoVertical.setAngle(angleVertical + self.servoVertical.getAngle())
+
+    def addAngleHorizontal(self, angleHorizontal):
+        self.servoHorizontal.setAngle(angleHorizontal + self.servoHorizontal.getAngle())
+
     def draw(self, forme):
+        self.turnOnLaser()
         self.modeShape.turnOn()
         if forme == "square":
             self.shape.drawSquare()
         elif forme == "circle":
             self.shape.drawCircle()
         self.modeShape.turnOff()
+        self.turnOffLaser()
             
     def turnOnLaser(self):
         self.laser.turnOn()
     
     def turnOffLaser(self):
         self.laser.turnOff()
-        
-t = Turret()
-t.draw("square")
-t.draw("circle")

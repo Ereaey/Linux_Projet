@@ -11,5 +11,7 @@ class Servo:
             duty = (angle + 90) * (1000000 / 180) + 1000000
             self.pwm.set_duty(duty)
 
-#s = Servo("P9_14", "P8_13")
-#s.setAngle(12)
+    def getAngle(self):
+        duty = int(self.pwm.get_duty())
+        angle = (duty - 1000000) / (1000000 / 180) - 90
+        return angle
