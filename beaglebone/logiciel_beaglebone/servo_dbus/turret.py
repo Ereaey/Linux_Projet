@@ -8,8 +8,8 @@ class Turret:
         pwm.enablePWM()
         self.servoHorizontal = Servo("P9_14")
         self.servoVertical = Servo("P8_13")
-        self.laser = Led(60)#P8_14
-        self.modeShape = Led(61)
+        self.laser = Led(26)#P8_14
+        self.modeShape = Led(46)
         self.shape = Shape(self)
         
     def setAngle(self, angleVertical, angleHorizontal):
