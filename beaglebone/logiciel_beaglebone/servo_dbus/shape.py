@@ -17,8 +17,8 @@ class Shape:
                 self.t.setAngle(int(math.cos(angle) * 25.0), int(math.sin(angle) * 25.0))
                 time.sleep(0.01)
                 
-    def drawCircleF(self):
-        print "Draw circleF"
+    def drawSpiral(self):
+        print "Draw Spiral"
         for nb in range(30, 0, -3):
             for f in range(0, 360, 10):
                 angle = f * 2 * math.pi / 360.0
@@ -33,6 +33,10 @@ class Shape:
     def moveTo(self, X, Y):
         self.t.setAngleHorizontal(X + self.zeroH)
         self.t.setAngleVertical(Y + self.zeroV)
+        
+    def moveFrom(self, X, Y):
+        a = self.getPosition()
+        self.moveTo(a[0] + X, a[1] + Y)
         
     def getPosition(self):
         return self.t.servoHorizontal.getAngle() - self.zeroH, self.t.servoVertical.getAngle() - self.zeroV

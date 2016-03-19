@@ -35,6 +35,8 @@ class Turret:
             self.shape.drawSquare()
         elif forme == "circle":
             self.shape.drawCircle()
+        elif forme == "spiral":
+            self.shape.drawSpiral()
         self.modeShape.turnOff()
         self.turnOffLaser()
             

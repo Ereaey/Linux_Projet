@@ -34,13 +34,9 @@ class Service(dbus.service.Object):
     def reset(self):
         self.t.shape.moveTo(90, 90)
     
-    @dbus.service.method("com.turret.test", in_signature='s', out_signature='')
-    def addAngleHorizontal(self, value):
-        self.t.addAngleHorizontal(int(value))
-        
-    @dbus.service.method("com.turret.test", in_signature='s', out_signature='')
-    def addAngleVertical(self, value):
-        self.t.addAngleVertical(int(value))
+    @dbus.service.method("com.turret.test", in_signature='ss', out_signature='')
+    def moveFrom(self, X, Y):
+        self.t.shape.moveFrom(int(X), int(Y))
     
     @dbus.service.method("com.turret.test", in_signature='s', out_signature='')
     def led(self, value):
