@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=com.turret.test
+Exec=/home/debian/logiciel_beaglebone/servo_dbus/main.py
