@@ -1,12 +1,15 @@
 import serial
 from time import *
-from common_dbus/protocole import *
+import sys
+sys.path.append("../common_dbus")
+from protocole import *
 import os
 
 os.system("echo BB-UART2 > /sys/devices/bone_capemgr.8/slots")
 sleep(3)
 
 ser = serial.Serial(port="/dev/ttyO2", baudrate=115200)
+
 #ser.flushInput()
 def enum(**enums):
     return type('Enum', (), enums)
@@ -45,6 +48,12 @@ send_cmd("AT+CIPMUX=1")
 send_cmd("AT+CIPSERVER=1,300")
 send_cmd("AT+CIFSR")
 
+p = Protocole()
+
 while 1:
 	a = ser.readline()
-	treatment(a)
+	d = a.split(":")
+	e = d.split(",")
+	print "Taille", e[:1]
+	print "Message", d[1][int(e[:1]):]
+	p.treatment(d[1][int(e[:1]):])
