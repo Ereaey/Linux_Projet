@@ -9,10 +9,12 @@ Compilation de u-boot, kernel et rootfs pour une beaglebone white
 [Mise en place de la carte SD](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone/sd.md)  
 
 
-Soft sur beaglebone
+Utilisation de la beaglebone white en python
 ============
 
-[Utilisation de la beaglebone (PWM, GPIO, ...)](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone)  
-[Principe DBUS]()  
-[Description modes de communication]()  
+[Utilisation de la beaglebone (PWM, GPIO, ...)](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone/pwm_gpio.md)  
+[Principe DBUS](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone/d_bus.md)  
+[Description modes de communication](https://github.com/Ereaey/Linux_Projet/blob/master/beaglebone/protocole.md)  
 
+Description du projet
+============
