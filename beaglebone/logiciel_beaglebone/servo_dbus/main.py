@@ -26,7 +26,7 @@ class Service(dbus.service.Object):
     def draw(self, shape):
         self.t.draw(shape)
         
-    @dbus.service.method("com.turret.test", in_signature='ss', out_signature='')
+    @dbus.service.method("com.turret.test", signature='ss')
     def moveTo(self, x, y):
         self.t.shape.moveTo(int(x), int(y))
         
@@ -34,7 +34,7 @@ class Service(dbus.service.Object):
     def reset(self):
         self.t.shape.moveTo(90, 90)
     
-    @dbus.service.method("com.turret.test", in_signature='ss', out_signature='')
+    @dbus.service.method("com.turret.test", signature='ss')
     def moveFrom(self, X, Y):
         self.t.shape.moveFrom(int(X), int(Y))
     

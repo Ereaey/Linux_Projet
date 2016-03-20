@@ -19,7 +19,7 @@ class Protocole():
     def Laser(self, mode):
         self.service.Laser(mode, dbus_interface = 'com.turret.test')
         
-    def treatment(data):
+    def treatment(self, data):
         typeTrame = ord(data[0])
         octet1 = ord(data[1])
         octet2 = ord(data[2])
@@ -38,4 +38,16 @@ class Protocole():
         elif typeTrame == 0x42:
             self.moveTo(octet1 - 0x41, octet2 - 0x41)
         elif typeTrame == 0x41:
-            self.moveFrom(octet1 - 0x41, octet2 - 0x41)
+            if octet1 == 0x41:
+                m1 = 0
+            elif octet1 == 0x42:
+                m1 = 10
+            elif octet1 == 0x43:
+                m1 = -10
+            if octet2 == 0x41:
+                m2 = 0
+            elif octet2 == 0x42:
+                m2 = 10
+            elif octet2 == 0x43:
+                m2 = -10
+            self.moveFrom(m1, m2)
