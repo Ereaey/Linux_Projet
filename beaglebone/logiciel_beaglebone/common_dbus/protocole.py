@@ -30,6 +30,8 @@ class Protocole():
                 self.drawShape("circle")
             elif octet1 == 0x43:
                 self.drawShape("spiral")
+            elif octet1 == 0x44:
+                self.drawShape("triangle")
         elif typeTrame == 0x43:
             if octet1 == 0x41:
                 self.Laser("off")
