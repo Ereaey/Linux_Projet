@@ -9,6 +9,18 @@
         {
             "shape": "square",
             "file": "square.json"
+        },
+        {
+            "shape": "triangle",
+            "file": "triangle.json"
+        },
+        {
+            "shape": "circle",
+            "method": "drawCircle"
+        },
+        {
+            "shape": "spiral",
+            "method": "drawSpiral"
         }
     ]
 }

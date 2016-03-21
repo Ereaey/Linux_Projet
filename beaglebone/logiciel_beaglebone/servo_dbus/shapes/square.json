@@ -1,0 +1,24 @@
+{
+    "draw": {
+        "originX": 75,
+        "originY": 75,
+        "lines": [
+            {
+                "posX": 75,
+                "posY": 105
+            },
+            {
+                "posX": 105,
+                "posY": 105
+            },
+            {
+                "posX": 105,
+                "posY": 75
+            },
+            {
+                "posX": 75,
+                "posY": 75
+            }
+        ]
+    }
+}
