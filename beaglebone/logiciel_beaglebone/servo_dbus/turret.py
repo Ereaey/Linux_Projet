@@ -3,13 +3,20 @@ from shape import *
 from led import *
 import pwm
 
+import json
+
 class Turret:
     def __init__(self):
         pwm.enablePWM()
-        self.servoHorizontal = Servo("P9_14")
-        self.servoVertical = Servo("P8_13")
-        self.laser = Led(26)#P8_14
-        self.modeShape = Led(46)
+        
+        json_data=open('configuration.json')
+        data = json.load(json_data)
+        json_data.close()
+        
+        self.servoHorizontal = Servo(data["configuration"]["servoHorizontal"])
+        self.servoVertical = Servo(data["configuration"]["servoVertical"])
+        self.laser = Led(int(data["configuration"]["laser"]))#P8_14
+        self.modeShape = Led(int(data["configuration"]["ledmode"]))
         self.shape = Shape(self)
         
     def setAngle(self, angleVertical, angleHorizontal):

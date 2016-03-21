@@ -1,0 +1,14 @@
+{
+    "configuration": {
+        "laser": 26,
+        "ledmode": 48,
+        "servoHorizontal": "P9_14",
+        "servoVertical": "P8_13"
+    },
+    "shapes": [
+        {
+            "shape": "square",
+            "file": "square.json"
+        }
+    ]
+}
