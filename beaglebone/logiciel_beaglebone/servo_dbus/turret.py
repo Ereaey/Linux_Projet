@@ -9,7 +9,7 @@ class Turret:
     def __init__(self):
         pwm.enablePWM()
         
-        json_data=open('configuration.json')
+        json_data=open('/home/debian/logiciel_beaglebone/servo_dbus/configuration.json')
         data = json.load(json_data)
         json_data.close()
         

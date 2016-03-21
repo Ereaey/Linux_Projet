@@ -2,7 +2,7 @@ import serial
 import os
 import time
 import sys
-sys.path.append("../common_dbus")
+sys.path.append("/home/debian/logiciel_beaglebone/common_dbus")
 from protocole import *
 
 os.system("echo BB-UART1 > /sys/devices/bone_capemgr.8/slots")
