@@ -2,20 +2,24 @@
     "draw": {
         "originX": 75,
         "originY": 75,
-        "lines": [
+        "movement": [
             {
+                "type": "line",
                 "posX": 75,
                 "posY": 105
             },
             {
+                "type": "line",
                 "posX": 105,
                 "posY": 105
             },
             {
+                "type": "line",
                 "posX": 105,
                 "posY": 75
             },
             {
+                "type": "line",
                 "posX": 75,
                 "posY": 75
             }

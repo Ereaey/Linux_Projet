@@ -57,15 +57,6 @@ class Shape:
                 e = t
             self.moveTo(int(X + (posX - X) / t * e), int(Y + (posY - Y) / t * e))
             time.sleep(0.01)
-    
-    def drawSquare(self):
-        print "Draw squareLine"
-        for nb in range(0, 5):
-            self.moveTo(75, 75)
-            self.drawLine(75, 105)
-            self.drawLine(105, 105)
-            self.drawLine(105, 75)
-            self.drawLine(75, 75)
             
     def drawShape(self, forme):
         json_data=open('configuration.json')
@@ -77,7 +68,6 @@ class Shape:
                 if i.items()[1][0] == "method":
                     method = getattr(self, i.items()[1][1])
                     method()
-                    print "method"
                 elif i.items()[1][0] == "file":
                     self.drawJSON(i.items()[1][1])
                     
@@ -87,7 +77,11 @@ class Shape:
         json_data.close()
         self.moveTo(int(data["draw"]["originX"]), int(data["draw"]["originY"]))
         self.t.turnOnLaser()
-        for i in data["draw"]["lines"]:
-            #print i["posX"], i["posY"]
-            self.drawLine(int(i["posX"]), int(i["posY"]))
+        for i in data["draw"]["movement"]:
+            if i["type"] == "line":
+                self.drawLine(int(i["posX"]), int(i["posY"]))
+            elif i["type"] == "moveTo":
+                self.moveTo(int(i["posX"]), int(i["posY"]))
+            elif i["type"] == "moveFrom":
+                self.moveFrom(int(i["posX"]), int(i["posY"]))
         self.t.turnOffLaser()
