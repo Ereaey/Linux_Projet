@@ -1,6 +1,8 @@
 import time
 import math
 
+import json
+
 class Shape:
     def __init__(self, t):
         self.t = t
@@ -11,14 +13,17 @@ class Shape:
     
     def drawCircle(self):
         print "Draw circle"
+        self.t.turnOnLaser()
         for nb in range(0, 5):
             for f in range(0, 360, 5):
                 angle = f * 2 * math.pi / 360.0
                 self.t.setAngle(int(math.cos(angle) * 25.0), int(math.sin(angle) * 25.0))
                 time.sleep(0.01)
-                
+        self.t.turnOffLaser()
+        
     def drawSpiral(self):
         print "Draw Spiral"
+        self.t.turnOnLaser()
         for nb in range(30, 0, -3):
             for f in range(0, 360, 10):
                 angle = f * 2 * math.pi / 360.0
@@ -29,6 +34,7 @@ class Shape:
                 angle = f * 2 * math.pi / 360.0
                 self.t.setAngle(int(math.cos(angle) * nb * -1), int(math.sin(angle) * nb))
                 time.sleep(0.01)
+        self.t.turnOffLaser()
                 
     def moveTo(self, X, Y):
         self.t.setAngleHorizontal(X + self.zeroH)
@@ -60,3 +66,28 @@ class Shape:
             self.drawLine(105, 105)
             self.drawLine(105, 75)
             self.drawLine(75, 75)
+            
+    def drawShape(self, forme):
+        json_data=open('configuration.json')
+        data = json.load(json_data)
+        json_data.close()
+        
+        for i in data["shapes"]:
+            if i["shape"] == forme:
+                if i.items()[1][0] == "method":
+                    method = getattr(self, i.items()[1][1])
+                    method()
+                    print "method"
+                elif i.items()[1][0] == "file":
+                    self.drawJSON(i.items()[1][1])
+                    
+    def drawJSON(self, file):
+        json_data=open('shapes/' + file)
+        data = json.load(json_data)
+        json_data.close()
+        self.moveTo(int(data["draw"]["originX"]), int(data["draw"]["originY"]))
+        self.t.turnOnLaser()
+        for i in data["draw"]["lines"]:
+            #print i["posX"], i["posY"]
+            self.drawLine(int(i["posX"]), int(i["posY"]))
+        self.t.turnOffLaser()
