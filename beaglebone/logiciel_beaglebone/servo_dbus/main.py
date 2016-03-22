@@ -26,6 +26,10 @@ class Service(dbus.service.Object):
     def draw(self, shape):
         self.t.draw(shape)
         
+    @dbus.service.method("com.turret.test", in_signature='s', out_signature='')
+    def drawJSON(self, data):
+        self.t.shape.drawJSONRaw(data)
+        
     @dbus.service.method("com.turret.test", signature='ss')
     def moveTo(self, x, y):
         self.t.shape.moveTo(int(x), int(y))
@@ -39,7 +43,7 @@ class Service(dbus.service.Object):
         self.t.shape.moveFrom(int(X), int(Y))
     
     @dbus.service.method("com.turret.test", in_signature='s', out_signature='')
-    def led(self, value):
+    def laser(self, value):
         if value == "on":
             self.t.turnOnLaser()
         elif value == "off":

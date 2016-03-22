@@ -86,3 +86,16 @@ class Shape:
             elif i["type"] == "moveFrom":
                 self.moveFrom(int(i["posX"]), int(i["posY"]))
         self.t.turnOffLaser()
+        
+    def drawJSONRaw(self, d):
+        data = json.loads(d)
+        self.moveTo(int(data["draw"]["originX"]), int(data["draw"]["originY"]))
+        self.t.turnOnLaser()
+        for i in data["draw"]["movement"]:
+            if i["type"] == "line":
+                self.drawLine(int(i["posX"]), int(i["posY"]))
+            elif i["type"] == "moveTo":
+                self.moveTo(int(i["posX"]), int(i["posY"]))
+            elif i["type"] == "moveFrom":
+                self.moveFrom(int(i["posX"]), int(i["posY"]))
+        self.t.turnOffLaser()
