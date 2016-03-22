@@ -1,0 +1,51 @@
+{
+    "firstChar": "0x41",
+    "command": [
+        {
+            "id": "1",
+            "method": "moveFrom",
+            "param": [
+                {
+                    "value": "X"
+                },
+                {
+                    "value": "Y"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "method": "moveTo",
+            "param": [
+                {
+                    "value": "X"
+                },
+                {
+                    "value": "Y"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "cond": [
+                {
+                    "value": "1",
+                    "method": "turnOff"
+                },
+                {
+                    "value": "2",
+                    "method": "turnOn"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "method": "drawShape",
+            "param": [
+                {
+                    "value": "Shape"
+                }
+            ]
+        }
+    ]
+}
